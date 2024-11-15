@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
+  const {createUser,setUser} = useContext(AuthContext)
+  const handleRegister = event =>{
+    event.preventDefault()
+    const name = event.target.name.value;
+    const photo = event.target.photo.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    createUser(email,password)
+    .then(res =>{
+      const user = res.user;
+      setUser(user)
+      // console.log("Register Sucessfully", user)
+    })
+    .catch(error =>{
+      console.log(error.message)
+    })
+  }
     return (
         <div className="flex justify-center -mt-20 items-center min-h-screen">
         <div className="card bg-base-100 w-full max-w-lg shrink-0 p-4">
           <h2 className="font-bold text-xl text-center py-2">Register Your Account !</h2>
-          <form className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
-              <input
+              <input 
+                name='name'
                 type="text"
                 placeholder="Your Name"
                 className="input input-bordered"
@@ -22,6 +41,7 @@ const Register = () => {
                 <span className="label-text">Photo</span>
               </label>
               <input
+                 name='photo'
                 type="text"
                 placeholder="Photo URL//"
                 className="input input-bordered"
@@ -32,6 +52,7 @@ const Register = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
+                 name='email'
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
@@ -43,6 +64,7 @@ const Register = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                 name='password'
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
