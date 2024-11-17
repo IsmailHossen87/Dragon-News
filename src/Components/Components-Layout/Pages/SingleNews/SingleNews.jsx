@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaShareAlt, FaRegBookmark, FaEye } from 'react-icons/fa';
 import ReactStars from 'react-rating-stars-component';
+import { Link } from 'react-router-dom';
 
 const SingleNews = ({card }) => {
   return (
@@ -36,7 +37,7 @@ const SingleNews = ({card }) => {
       <div className="p-4">
         <h2 className="font-bold text-lg mb-2">{card.title}</h2>
         <p className="text-gray-500 text-sm mb-3">
-          {card.details.slice(0, 150)}... <span className="text-blue-500">Read More</span>
+          {card.details.slice(0, 150)}... <Link to={`/news/${card._id}`} className="text-blue-500">Read More</Link>
         </p>
 
         {/* Rating and Views */}

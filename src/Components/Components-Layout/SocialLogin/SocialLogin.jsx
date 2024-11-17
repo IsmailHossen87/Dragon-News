@@ -6,7 +6,6 @@ const SocialLogin = () => {
             <div className="flex flex-col gap-2">
                 <button className="btn"><FaGoogle></FaGoogle> Login with Google</button>
                 <button className="btn"><FaGithub></FaGithub> Login with GitHub</button>
-              
             </div>
         </div>
     );
